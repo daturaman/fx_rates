@@ -1,7 +1,7 @@
 require 'date'
 
 class ExchangeRate
-  def at(date, from_currency, to_currency)
-    Date.today
+  def ExchangeRate.at(date, from_currency, to_currency)
+    date
   end
 end
