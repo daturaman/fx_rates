@@ -1,6 +1,6 @@
 require 'test/unit'
 require 'date'
-require 'exchange_rate'
+require_relative '../lib/exchange_rate'
 
 class ExchangeRateTest < Test::Unit::TestCase
 
