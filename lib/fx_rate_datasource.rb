@@ -15,7 +15,7 @@ class FxRateDatasource
   end
 
   def get_fx_rate(date, to_cur)
-    XPath.first(@fx_xml, "//Cube[@time='2017-03-02']/Cube[@currency='GBP']")
+    XPath.first(@fx_xml, "//Cube[@time='#{date}']/Cube[@currency='#{to_cur}']")['rate']
   end
 
   private
@@ -23,7 +23,7 @@ class FxRateDatasource
     fx_feed = open(feed_uri) { |f| f.read }
     feed_file = File.open(FX_FEED_FILE, 'w+')
     feed_file.puts(fx_feed)
-    @fx_xml = Document.new(File.new(feed_uri)) #FIXME
+    @fx_xml = Document.new(File.new(FX_FEED_FILE)) #FIXME
     feed_file.close
   end
 end

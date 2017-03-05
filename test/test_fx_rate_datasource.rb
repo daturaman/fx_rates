@@ -22,8 +22,7 @@ class TestFxRateDatasource < Test::Unit::TestCase
   #TODO Parameterise this
   def test_returns_fx_rate
     data = FxRateDatasource.new(TEST_FEED)
-    assert_not_nil(data.fx_xml)
     actual_fx_rate = data.get_fx_rate(Date.new(2017, 03, 02), 'GBP')
-    assert_equal(0.8556, actual_fx_rate)
+    assert_equal(0.8556.to_s, actual_fx_rate)
   end
 end
