@@ -15,16 +15,15 @@ class FxRateDatasource
   end
 
   def get_fx_rate(date, to_cur)
-    0
+    XPath.first(@fx_xml, "//Cube[@time='2017-03-02']/Cube[@currency='GBP']")
   end
 
   private
   def load_fx_rate(feed_uri)
     fx_feed = open(feed_uri) { |f| f.read }
-    feed_file = File.open(FX_FEED_FILE, 'w') do |feed_file|
-      feed_file.puts fx_feed
-    end
-    #THis should create the xml dom instance field
-    @fx_xml = Document.new(feed_file)
+    feed_file = File.open(FX_FEED_FILE, 'w+')
+    feed_file.puts(fx_feed)
+    @fx_xml = Document.new(File.new(feed_uri)) #FIXME
+    feed_file.close
   end
 end
