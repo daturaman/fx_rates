@@ -25,4 +25,10 @@ class TestFxRateDatasource < Test::Unit::TestCase
     actual_fx_rate = data.get_fx_rate(Date.new(2017, 03, 02), 'GBP')
     assert_equal(0.8556.to_s, actual_fx_rate)
   end
+
+  def test_invalid_date_throws_exception
+    assert_raise ArgumentError do
+      FxRateDatasource.new(TEST_FEED).get_fx_rate(Date.new(2012, 12, 21), 'HUF')
+    end
+  end
 end
