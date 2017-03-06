@@ -1,6 +1,6 @@
 require 'test/unit'
 require 'date'
-require_relative '../lib/exchange_rate'
+require 'exchange_rate'
 
 class ExchangeRateTest < Test::Unit::TestCase
   def teardown

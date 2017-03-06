@@ -2,7 +2,7 @@ require 'open-uri'
 require 'rexml/document'
 include REXML
 
-class FxRateDatasource
+class FxRateDatasource #TODO call this datastore
   FX_FEED_FILE = 'fx_feed_file.xml'
 
   def initialize(feed_uri)
@@ -10,6 +10,9 @@ class FxRateDatasource
     @fx_xml = File.exist?(FX_FEED_FILE) ? Document.new(File.new(FX_FEED_FILE)) : load_fx_rate(feed_uri)
   end
 
+  #TODO This should read the xml file to a json file. This method is then agnostic about xml formats, it just cares
+  #about date, currency and rate.
+  #FIXME XPath too rigid/tightly coupled to ECB data.
   def get_fx_rate(date, currency)
     element = XPath.first(@fx_xml, "//Cube[@time='#{date}']/Cube[@currency='#{currency}']") #TODO make this xpath settable
     element.nil? ? (raise ArgumentError, "No fx rate found for #{currency} at #{date}") : element.attribute('rate').value
