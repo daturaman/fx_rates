@@ -7,6 +7,6 @@ class ExchangeRate
     fx_data = FxRateDatasource.new('http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml')
     from_fx_rate = fx_data.get_fx_rate(date, from_currency) # eur to 'to_currency'
     to_fx_rate = fx_data.get_fx_rate(date, to_currency) # eur to 'from_currency'
-    0.0
+    1/(from_fx_rate.to_f/to_fx_rate.to_f)
   end
 end
