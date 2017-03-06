@@ -7,9 +7,8 @@ class FxRateDatasource
   attr_reader :fx_xml
 
   def initialize(feed_uri)
-    @feed_uri = feed_uri
     #BUG - need way to update file, even if it exists
-    @fx_xml = File.exist?(FX_FEED_FILE) ? Document.new(File.new(FX_FEED_FILE)) : load_fx_rate(@feed_uri)
+    @fx_xml = File.exist?(FX_FEED_FILE) ? Document.new(File.new(FX_FEED_FILE)) : load_fx_rate(feed_uri)
   end
 
   def get_fx_rate(date, currency)
