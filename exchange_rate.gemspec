@@ -3,11 +3,12 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
-  spec.name          = "fx_rate"
+  spec.name          = "exchange_rate"
+  spec.version       = "0.1.0"
   spec.authors       = ["Michael Carter"]
   spec.email         = ["mpcarter76@gmail.com"]
 
-  spec.summary       = "Fx rate converter" 
+  spec.summary       = "Exchange rate converter"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -28,4 +29,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.14"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "test-unit"
 end
