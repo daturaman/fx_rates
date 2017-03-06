@@ -1,7 +1,7 @@
 require 'date'
 require 'fx_rate_datasource'
 
-class ExchangeRate
+class FxRate
   class << self
     def at(date, from_currency, to_currency)
       #TODO Decide how and when to instantiate the datasource and read the web feed to file
