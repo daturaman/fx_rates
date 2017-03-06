@@ -4,7 +4,6 @@ include REXML
 
 class FxRateDatasource
   FX_FEED_FILE = 'fx_feed_file.xml'
-  attr_reader :fx_xml
 
   def initialize(feed_uri)
     #BUG - need way to update file, even if it exists
@@ -13,7 +12,7 @@ class FxRateDatasource
 
   def get_fx_rate(date, currency)
     element = XPath.first(@fx_xml, "//Cube[@time='#{date}']/Cube[@currency='#{currency}']") #TODO make this xpath settable
-    element.nil? ? (raise ArgumentError, "No fx rate found for #{currency} at #{date}") : element['rate']
+    element.nil? ? (raise ArgumentError, "No fx rate found for #{currency} at #{date}") : element.attribute('rate').value
   end
 
   def load_fx_rate(feed_uri)
