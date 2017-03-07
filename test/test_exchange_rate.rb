@@ -4,8 +4,8 @@ require 'exchange_rate'
 
 class ExchangeRateTest < Test::Unit::TestCase
   def teardown
-    if File.exist?(FxRateDatasource::FX_FEED_FILE)
-      File.delete(FxRateDatasource::FX_FEED_FILE)
+    if File.exist?(FxRateDatastore::FX_FEED_FILE)
+      File.delete(FxRateDatastore::FX_FEED_FILE)
     end
   end
 
