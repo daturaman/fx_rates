@@ -11,7 +11,7 @@ class EcbDatasource
   end
 
   def load_and_transform
-    fx_xml = Document.new(open(feed_uri) { |f| f.read })
+    fx_xml = Document.new(open(@feed_uri) { |f| f.read })
     fx_map = Hash.new
     fx_xml.each_element('gesmes:Envelope/Cube/Cube') { |time_el|
       per_date = Hash.new
