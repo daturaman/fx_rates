@@ -37,7 +37,7 @@ class TestFxRateDatastore < Test::Unit::TestCase
 
   def test_date_out_of_range
     assert_raise ArgumentError do
-      FxRateDatastore.new(TEST_FEED).get_fx_rate(Date.new(2012, 12, 21), 'HUF')
+      @data.get_fx_rate(Date.new(2012, 12, 21), 'HUF')
     end
   end
 end

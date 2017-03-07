@@ -6,8 +6,8 @@ module ExchangeRate
   module_function
   @datastore = FxRateDatastore.new(EcbDatasource.new)
 
-  def self.datasource=(ds)
-    @datastore.fx_datasource = ds
+  def self.datasource=(datasource)
+    @datastore.fx_datasource = datasource
   end
 
   def at(date, from_currency, to_currency)
@@ -17,6 +17,6 @@ module ExchangeRate
   end
 
   def load_fx_data
-    @datastore.load_and_transform
+    @datastore.load_fx_rate
   end
 end
