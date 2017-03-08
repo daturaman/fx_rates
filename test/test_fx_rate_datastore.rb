@@ -3,21 +3,8 @@ require 'ecb_datasource'
 require_relative '../lib/fx_rate_datastore'
 
 class TestFxRateDatastore < Test::Unit::TestCase
-  TEST_FEED = EcbDatasource.new('eurofxref-hist-90d.xml')
-
   def setup
-    assert_false(File.exist?(FxRateDatastore::FX_JSON_FILE))
-    @data = FxRateDatastore.new(TEST_FEED)
-  end
-
-  def teardown
-    if File.exist?(FxRateDatastore::FX_JSON_FILE)
-      File.delete(FxRateDatastore::FX_JSON_FILE)
-    end
-  end
-
-  def test_local_file_created
-    assert_true(File.exist?(FxRateDatastore::FX_JSON_FILE))
+    @data = FxRateDatastore.new(EcbDatasource.new)
   end
 
   def test_returns_fx_rate_gbp

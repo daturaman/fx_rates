@@ -3,10 +3,12 @@ require 'rexml/document'
 include REXML
 
 class EcbDatasource
-  FEED_URI = 'http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml'
+  #If a cron job is curling the feed from the ECB site, FEED_URI only ever needs to point to a local file
+  #FX_DATA = 'http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml'
+  FX_DATA = 'fx_data.xml'
   attr_reader :feed_uri
 
-  def initialize(feed_uri=FEED_URI)
+  def initialize(feed_uri=FX_DATA)
     @feed_uri = feed_uri
   end
 

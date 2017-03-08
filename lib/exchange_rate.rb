@@ -1,6 +1,7 @@
 require 'date'
 require 'fx_rate_datastore'
 require 'ecb_datasource'
+require 'open-uri'
 
 module ExchangeRate
   module_function
@@ -16,7 +17,13 @@ module ExchangeRate
     1/(from_fx_rate.to_f/to_fx_rate.to_f)
   end
 
-  def load_fx_data
+  #This can be called by a cron job
+  def load_fx_data(feed_uri)
+    #Update the local file that datastore.datasource reads from
+    #'http://www.ecb.europa.eu/stats/eurofxref/fx_data.xml'
+    fx_data = open(feed_uri) { |f| f.read }
+    File.open(@datastore.fx_datasource::FX_DATA, 'w+') { |f| f.puts(fx_data) }
+    #Tell datastore to reload its data
     @datastore.load_fx_rate
   end
 end

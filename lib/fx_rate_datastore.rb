@@ -1,10 +1,9 @@
-require 'open-uri'
 require 'rexml/document'
 require 'json'
 include REXML
 
 class FxRateDatastore
-  FX_JSON_FILE = 'fx_rates.json'
+  attr_reader :fx_datasource
 
   def initialize(fx_datasource)
     @fx_datasource = fx_datasource
@@ -22,7 +21,6 @@ class FxRateDatastore
   end
 
   def load_fx_rate
-    @fx_data = File.exist?(FX_JSON_FILE) ? JSON.parse(File.new(FX_JSON_FILE).read) : @fx_datasource.load_and_transform
-    File.open(FX_JSON_FILE, 'w+') { |fx_json| fx_json.puts(JSON.generate(@fx_data)) }
+    @fx_data = @fx_datasource.load_and_transform
   end
 end
