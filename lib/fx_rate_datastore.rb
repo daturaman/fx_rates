@@ -17,10 +17,13 @@ class FxRateDatastore
 
   def fx_datasource=(fx_datasource)
     @fx_datasource = fx_datasource
+    @fx_data = nil # must do this when changing datasource or we will be using the old data
     load_fx_rate
   end
 
   def load_fx_rate
+    #if fx_data.nil? || fx_data.latest_date < Date.today then reload fx_data from datasource. Datasource always reads from xml file. 
+    #Cron job reads from the web feed
     @fx_data = @fx_datasource.load_and_transform
   end
 end
